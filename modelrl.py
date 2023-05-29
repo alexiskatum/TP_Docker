@@ -31,7 +31,7 @@ lr.fit(train_x, train_y)
  
 predicted_qualities = lr.predict(test_x)
  
-rmse = mean_absolute_error(test_y, predicted_qualities,squared=False)
+rmse = mean_absolute_error(test_y, predicted_qualities)
 mae = mean_squared_error(test_y, predicted_qualities)
 r2 = r2_score(test_y, predicted_qualities)
  
@@ -40,3 +40,9 @@ print("Elasticnet model (alpha=%f, l1_ratio=%f):" % (alpha, l1_ratio))
 print("  RMSE: %s" % rmse)
 print("  MAE: %s" % mae)
 print("  R2: %s" % r2)
+
+
+# Write scores to a file
+with open("metrics.txt", 'w') as outfile:
+        outfile.write("recall score:  {0:2.1f} \n".format(rmse))
+        outfile.write("f1 score {0:2.1f}\n".format(mae))
