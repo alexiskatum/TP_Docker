@@ -60,10 +60,10 @@ if __name__ == "__main__":
     os.environ['MLFLOW_TRACKING_PASSWORD'] = 'TpFinal'
     os.environ['AZURE_STORAGE_CONNECTION_STRING'] = 'DefaultEndpointsProtocol=https;AccountName=tpfinal;AccountKey=ofrYHwTX9xiXLfg+kP3phQBE+Q8zJECGRtKApzq4v1fvOyw/r933h8HKDRGSeKBzTX+VDP6ZQqPa+AStcfdIMQ==;EndpointSuffix=core.windows.net'
 
+    mlflow.set_tracking_uri("http://20.151.236.36")
     mlflow.set_experiment(experiment_name="TP")
-    mlflow.set_tracking_uri("http://20.151.236.36") 
  
-    with mlflow.start_run():
+    with mlflow.start_run(run_name='Experiment MLFlow'):
         lr = ElasticNet(alpha=alpha, l1_ratio=l1_ratio, random_state=42)
         lr.fit(train_x, train_y)
  
