@@ -11,19 +11,4 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pip install -r requirements.txt
-
-      - name: Set Git commit ID as MLflow tag
-        run: |
-          python - <<EOF
-          import mlflow
-          import subprocess
-
-          # Get the Git commit ID
-          commit_id = subprocess.check_output(["git", "rev-parse", "HEAD"]).strip().decode("utf-8")
-
-          # Set the Git commit ID as a tag in MLflow
-          mlflow.set_tag("git_commit_id", commit_id)
-          EOF
-          
-      - name: Run MLflow script
-        run: python rl_tp.py
+          python rl_tp.py
